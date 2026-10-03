@@ -1,15 +1,34 @@
+from typing import Optional
+
+
 def get_range_for_difficulty(difficulty: str):
     """Return (low, high) inclusive range for a given difficulty."""
-    raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
+    ranges = {
+        "Easy": (1, 20),
+        "Normal": (1, 100),
+        "Hard": (1, 500),
+    }
+    try:
+        return ranges[difficulty]
+    except KeyError:
+        raise ValueError(f"Unknown difficulty: {difficulty}") from None
 
 
-def parse_guess(raw: str):
+def parse_guess(raw: Optional[str]):
     """
-    Parse user input into an int guess.
+    Parse user input into an integer guess without truncating decimal input.
 
     Returns: (ok: bool, guess_int: int | None, error_message: str | None)
     """
-    raise NotImplementedError("Refactor this function from app.py into logic_utils.py")
+    if raw is None or not raw.strip():
+        return False, None, "Enter a guess."
+
+    try:
+        value = int(raw)
+    except ValueError:
+        return False, None, "Enter a whole number."
+
+    return True, value, None
 
 
 def check_guess(guess, secret):
