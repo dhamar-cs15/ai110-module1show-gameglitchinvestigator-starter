@@ -29,6 +29,9 @@ Document at least 3 bugs you found. Add rows as needed.
                                                   Secret number: 35
 
 | 4.5   | "Enter an integer" | "Go lower!"     |  4.5 marked in history |
+| Click | Empty input box    | 46 (from last   |  46 still in input box |
+  New                               game)
+  Game
 
 ---
 

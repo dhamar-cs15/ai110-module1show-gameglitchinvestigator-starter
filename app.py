@@ -10,7 +10,6 @@ from logic_utils import (
     update_score,
 )
 
-
 def start_new_game(low: int, high: int, difficulty: str) -> None:
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(low, high)
@@ -18,7 +17,6 @@ def start_new_game(low: int, high: int, difficulty: str) -> None:
     st.session_state.status = "playing"
     st.session_state.history = []
     st.session_state[f"guess_input_{difficulty}"] = ""
-
 
 st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
 
