@@ -33,11 +33,11 @@ It wrote the code, ran away, and now the game is unplayable.
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. User enters a number of 50 to guess a secret number
+2. The game returns a hint "Go higher!"
+3. User enters a number of 75, the game returns a hint "Go lower!"
+4. Score updates based on the number of incorrect guesses the user has given
+5. "Correct!" message is displayed when user guesses the correct secret number, along with the final score
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
@@ -48,6 +48,11 @@ Describe your fixed game in numbered steps so a reader can follow along without 
 # pytest tests/
 # ========================= X passed in 0.XXs =========================
 ```
+
+collected 32 items                                                                                    
+tests/test_game_logic.py ................................                                          [100%]
+
+=========================================== 32 passed in 0.02s ===========================================
 
 ## 🚀 Stretch Features
 
