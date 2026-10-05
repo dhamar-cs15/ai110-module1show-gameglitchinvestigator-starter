@@ -10,6 +10,16 @@ from logic_utils import (
     update_score,
 )
 
+
+def start_new_game(low: int, high: int, difficulty: str) -> None:
+    st.session_state.attempts = 0
+    st.session_state.secret = random.randint(low, high)
+    st.session_state.score = 0
+    st.session_state.status = "playing"
+    st.session_state.history = []
+    st.session_state[f"guess_input_{difficulty}"] = ""
+
+
 st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
 
 st.title("🎮 Game Glitch Investigator")
@@ -69,26 +79,22 @@ with st.expander("Developer Debug Info"):
     st.write("Difficulty:", difficulty)
     st.write("History:", st.session_state.history)
 
-raw_guess = st.text_input(
-    "Enter your guess:",
-    key=f"guess_input_{difficulty}"
-)
+with st.form("guess_form"):
+    raw_guess = st.text_input(
+        "Enter your guess:",
+        key=f"guess_input_{difficulty}"
+    )
+    submit = st.form_submit_button("Submit Guess 🚀")
 
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 with col1:
-    submit = st.button("Submit Guess 🚀")
+    st.button(
+        "New Game 🔁",
+        on_click=start_new_game,
+        args=(low, high, difficulty),
+    )
 with col2:
-    new_game = st.button("New Game 🔁")
-with col3:
     show_hint = st.checkbox("Show hint", value=True)
-
-if new_game:
-    st.session_state.attempts = 0
-    st.session_state.secret = random.randint(low, high)
-    st.session_state.score = 0
-    st.session_state.status = "playing"
-    st.session_state.history = []
-    st.rerun()
 
 if st.session_state.status != "playing":
     if st.session_state.status == "won":
